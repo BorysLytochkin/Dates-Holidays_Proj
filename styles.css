@@ -1,0 +1,73 @@
+body {
+    box-sizing: border-box;
+    background-color: azure;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab-button{
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #000000;
+    background-color: rgb(188, 247, 227);
+    text-align: center;
+    margin-right: 40px;
+}
+
+.tab-button.active{
+    background-color: #95ffd6;
+    font-weight: bold;
+}
+
+button {
+    background-color: rgb(188, 247, 227);
+}
+.tab-content {
+    display: none;
+} 
+
+.tab-content.active {
+    display: block;
+}
+
+.date-inputs, .country-inputs {
+    margin-bottom: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input[type="date"], select {
+    background-color: rgb(188, 247, 227);
+    padding: 7px;
+    margin-right: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    cursor: pointer;
+}
+
+th:hover {
+    background-color: #f1f1f1;
+}
+#calculate-btn {
+    padding: 7px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проміжки часу та Свята</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="tabs">
+        <button class="tab-button" data-tab="tab1">Проміжки часу</button>
+        <button class="tab-button" data-tab="tab2">Святкові дати</button>
+    </div>
+
+    <div id="tab1" class="tab-content active">
+        <h2>Визначення проміжку часу</h2>
+        <div class="date-inputs">
+            <label for="start-date">Дата початку:</label>
+            <input type="date" id="start-date">
+    
+            <label for="end-date">Дата закінчення:</label>
+            <input type="date" id="end-date">
+            
+            <label for="calculation-type">Тип підрахунку:</label>
+            <select id="calculation-type">
+                <option value="days">Дні</option>
+                <option value="hours">Години</option>
+                <option value="minutes">Хвилини</option>
+                <option value="seconds">Секунди</option>
+            </select>
+            <button id="calculate-btn">Порахувати</button>
+        </div>
+    
+        <div id="results">
+            <h3>Результати:</h3>
+            <table id="results-table">
+                <tr>
+                    <th>Початкова дата</th>
+                    <th>Кінцева дата</th>
+                    <th>Результат</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div id="tab2" class="tab-content">
+        <h2>Визначення святкових дат</h2>
+        <div class="country-inputs">
+            <label for="country">Вибір країни:</label>
+            <select id="country">
+            </select>
+
+            <label for="year">Вибір року:</label>
+            <select id="year" disabled>
+            </select>
+        </div>
+
+        <div id="holidays">
+            <h3>Свята:</h3>
+            <table id="holidays-table">
+                <thead>
+                    <tr>
+                        <th id="date-header">Дата</th>
+                        <th>Назва свята</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
