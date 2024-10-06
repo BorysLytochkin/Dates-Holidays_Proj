@@ -28,20 +28,19 @@ const resultsTable = document.getElementById('results-table');
     });
 });
 
-function calculateDifference(startDate, endDate, option) {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const diffTime = Math.abs(end - start); 
+function calculateDifference(startDate, endDate, option, filterOption) {
+
+    let daysCount = filterDays(startDate, endDate, filterOption);
 
     switch (option) {
         case 'days':
-            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return daysCount;
         case 'hours':
-            return Math.ceil(diffTime / (1000 * 60 * 60));
+            return daysCount * 24;
         case 'minutes':
-            return Math.ceil(diffTime / (1000 * 60));
+            return daysCount * 24 * 60;
         case 'seconds':
-            return Math.ceil(diffTime / 1000);
+            return daysCount * 24 * 60 * 60;
         default:
             return null;
     }
@@ -70,25 +69,7 @@ function renderResults() {
     });
 }
 
-calculateBtn.addEventListener('click', () => {
-    const startDate = startDateInput.value;
-    const endDate = endDateInput.value;
-    const calculationType = calculationTypeSelect.value;
-
-    if (!startDate || !endDate) {
-        alert('Будь ласка, оберіть обидві дати!');
-        return;
-    }
-
-    const result = calculateDifference(startDate, endDate, calculationType);
-    if (result !== null) {
-        saveResult(startDate, endDate, `${result} ${calculationType}`);
-    }
-});
-
 renderResults();
-
-
 
 const countrySelect = document.getElementById('country');
 const yearSelect = document.getElementById('year');
@@ -171,7 +152,7 @@ const monthPresetBtn = document.getElementById('month-preset');
 weekPresetBtn.addEventListener('click', () => {
     const startDate = new Date();
     const endDate = new Date();
-    endDate.setDate(startDate.getDate() + 7); 
+    endDate.setDate(startDate.getDate() + 6); 
 
     startDateInput.value = startDate.toISOString().split('T')[0];
     endDateInput.value = endDate.toISOString().split('T')[0];
@@ -193,7 +174,7 @@ function filterDays(startDate, endDate, filterOption) {
     const filteredDates = [];
 
     while (currentDate <= new Date(endDate)) {
-        const dayOfWeek = currentDate.getDay(); 
+        const dayOfWeek = currentDate.getDay();
 
         if (filterOption === 'weekdays' && dayOfWeek >= 1 && dayOfWeek <= 5) {
             filteredDates.push(new Date(currentDate));
@@ -203,21 +184,27 @@ function filterDays(startDate, endDate, filterOption) {
             filteredDates.push(new Date(currentDate));
         }
 
-        currentDate.setDate(currentDate.getDate() + 1); 
+        currentDate.setDate(currentDate.getDate() + 1);
     }
 
     return filteredDates.length; 
 }
 
+
 calculateBtn.addEventListener('click', () => {
     const startDate = startDateInput.value;
     const endDate = endDateInput.value;
     const calculationType = calculationTypeSelect.value;
-    const dayFilter = dayFilterSelect.value;
+    const dayFilter = dayFilterSelect.value; 
 
     if (!startDate || !endDate) {
         alert('Будь ласка, оберіть обидві дати!');
         return;
+    }
+
+    const result = calculateDifference(startDate, endDate, calculationType, dayFilter); 
+    if (result !== null) {
+        saveResult(startDate, endDate, `${result} ${calculationType} (з урахуванням фільтра ${dayFilter})`);
     }
 });
 
