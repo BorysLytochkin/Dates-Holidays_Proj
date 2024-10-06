@@ -2,13 +2,20 @@ body {
     box-sizing: border-box;
     background-color: azure;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 0px;
+    margin: 0px;
 }
 
 .tabs {
     display: flex;
     margin-bottom: 20px;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
 }
-
+#tab1, #tab2 {
+    margin-left: 5px;
+}
 .tab-button{
     padding: 10px;
     cursor: pointer;
@@ -16,8 +23,14 @@ body {
     background-color: rgb(188, 247, 227);
     text-align: center;
     margin-right: 40px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.title-txt-time, .title-txt-holiday {
+    text-align: center;
+    font-size: 32px;
+}
 .tab-button.active{
     background-color: #95ffd6;
     font-weight: bold;
@@ -38,18 +51,27 @@ button {
     margin-bottom: 20px;
 }
 
+.date-inputs, .country-inputs {
+    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 label {
-    margin-right: 10px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 input[type="date"], select {
+    font-size: 16px;
     background-color: rgb(188, 247, 227);
     padding: 7px;
-    margin-right: 25px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 table {
+    font-size: 18px;
     width: 100%;
     border-collapse: collapse;
 }
@@ -68,6 +90,34 @@ th:hover {
     background-color: #f1f1f1;
 }
 #calculate-btn {
+    width: fit-content;
+    font-size: 16px;
     padding: 7px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.preset-options button {
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(188, 247, 227);
+    padding: 7px;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #000000;
+}
+
+#day-filter {
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 7px;
+    background-color: rgb(188, 247, 227);
+    margin-right: 25px;
+}
+.res-title, .hol-title {
+    margin: 16px;
+    font-size: 32px;
+}
+#sort-date-btn {
+    border: none;
+    background-color: whitesmoke;
 }

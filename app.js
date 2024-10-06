@@ -107,7 +107,18 @@ async function fetchCountries() {
         countrySelect.appendChild(option);
     });
 
-    yearSelect.disabled = false;
+    countrySelect.addEventListener('change', function() {
+
+        if (countrySelect.value !== "") {
+            yearSelect.disabled = false;
+        } else {
+            yearSelect.disabled = true;
+        }
+    });
+
+    if (countrySelect.value === "") {
+        yearSelect.disabled = true;
+    }
 }
 
 async function fetchHolidays(country, year) {
@@ -153,5 +164,78 @@ function initYearSelect() {
 
 initYearSelect();
 fetchCountries();
+
+const weekPresetBtn = document.getElementById('week-preset');
+const monthPresetBtn = document.getElementById('month-preset');
+
+weekPresetBtn.addEventListener('click', () => {
+    const startDate = new Date();
+    const endDate = new Date();
+    endDate.setDate(startDate.getDate() + 7); 
+
+    startDateInput.value = startDate.toISOString().split('T')[0];
+    endDateInput.value = endDate.toISOString().split('T')[0];
+});
+
+monthPresetBtn.addEventListener('click', () => {
+    const startDate = new Date();
+    const endDate = new Date();
+    endDate.setDate(startDate.getDate() + 30); 
+
+    startDateInput.value = startDate.toISOString().split('T')[0];
+    endDateInput.value = endDate.toISOString().split('T')[0];
+});
+
+const dayFilterSelect = document.getElementById('day-filter');
+
+function filterDays(startDate, endDate, filterOption) {
+    let currentDate = new Date(startDate);
+    const filteredDates = [];
+
+    while (currentDate <= new Date(endDate)) {
+        const dayOfWeek = currentDate.getDay(); 
+
+        if (filterOption === 'weekdays' && dayOfWeek >= 1 && dayOfWeek <= 5) {
+            filteredDates.push(new Date(currentDate));
+        } else if (filterOption === 'weekends' && (dayOfWeek === 0 || dayOfWeek === 6)) {
+            filteredDates.push(new Date(currentDate));
+        } else if (filterOption === 'all') {
+            filteredDates.push(new Date(currentDate));
+        }
+
+        currentDate.setDate(currentDate.getDate() + 1); 
+    }
+
+    return filteredDates.length; 
+}
+
+calculateBtn.addEventListener('click', () => {
+    const startDate = startDateInput.value;
+    const endDate = endDateInput.value;
+    const calculationType = calculationTypeSelect.value;
+    const dayFilter = dayFilterSelect.value;
+
+    if (!startDate || !endDate) {
+        alert('Будь ласка, оберіть обидві дати!');
+        return;
+    }
+});
+
+let sortAscending = true; 
+
+document.getElementById('sort-date-btn').addEventListener('click', () => {
+    const holidaysRows = Array.from(holidaysTableBody.querySelectorAll('tr'));
+    holidaysRows.sort((a, b) => {
+        const dateA = new Date(a.children[0].textContent.split('.').reverse().join('-')); 
+        const dateB = new Date(b.children[0].textContent.split('.').reverse().join('-'));
+        return sortAscending ? dateA - dateB : dateB - dateA;
+    });
+
+    sortAscending = !sortAscending; 
+
+    holidaysTableBody.innerHTML = '';
+    holidaysRows.forEach(row => holidaysTableBody.appendChild(row));
+});
+
 
 
