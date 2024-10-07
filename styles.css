@@ -13,9 +13,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-#tab1, #tab2 {
-    margin-left: 5px;
-}
+
 .tab-button{
     padding: 10px;
     cursor: pointer;
@@ -118,6 +116,36 @@ th:hover {
     font-size: 32px;
 }
 #sort-date-btn {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border: none;
     background-color: whitesmoke;
+}
+@media  screen and (min-width: 320px) and (max-width: 475px) {
+.tab-button {   
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 0px;
+}
+.tabs {
+    gap: 14px;
+}
+.title-txt-time {
+    font-size: 22px;
+}
+label {
+    font-size: 16px;
+}
+.res-title {
+    font-size: 22px;
+}
+th, td {
+    font-size: 16px;
+    text-align: center;
+    padding: 2px;
+}
+table {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: auto;
+}
 }
