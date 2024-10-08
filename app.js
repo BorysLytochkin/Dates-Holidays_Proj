@@ -96,10 +96,6 @@ async function fetchCountries() {
             yearSelect.disabled = true;
         }
     });
-
-    if (countrySelect.value === "") {
-        yearSelect.disabled = true;
-    }
 }
 
 async function fetchHolidays(country, year) {
